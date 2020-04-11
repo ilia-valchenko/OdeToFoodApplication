@@ -1,4 +1,9 @@
-﻿@page
+﻿@page "{restaurantId:int}"
+<!--What the path should look like to reach the page.-->
+
+<!--We can also mark the parameter as optional.-->
+<!--page "{id?:int}"-->
+
 @model OdeToFoodApplication.DetailModel
 @{
     ViewData["Title"] = "Detail";
