@@ -7,6 +7,8 @@ namespace OdeToFood.DataAccess.Repositories.Interfaces
     {
         IEnumerable<Restaurant> Get();
 
+        Restaurant Get(int id);
+
         IEnumerable<Restaurant> Search(string name);
     }
 }

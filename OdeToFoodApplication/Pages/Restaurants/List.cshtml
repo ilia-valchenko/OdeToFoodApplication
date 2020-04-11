@@ -16,7 +16,7 @@
             <!--Asp-for attributes helps us to create a two-way data binding.-->
             <input type="search" asp-for="SearchTerm" class="form-control" />
             <span class="input-group-btn">
-                <button type="submit" class="btn btn-default">
+                <button type="submit" class="btn btn-info">
                     Search
                 </button>
             </span>
@@ -39,6 +39,8 @@
             <td>@restaurant.Name</td>
             <td>@restaurant.Cuisine</td>
             <td>@restaurant.Location</td>
+            <!--You can use 'asp-route-' + yourParameter to pass a value.-->
+            <td><a asp-page="./Detail" asp-route-restaurantId="@restaurant.Id" class="btn btn-info">Detail</a></td>
         </tr>
     }
 </table>

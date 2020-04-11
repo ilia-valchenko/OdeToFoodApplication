@@ -69,5 +69,10 @@ namespace OdeToFood.DataAccess.Repositories
                 .Where(r => r.Name.Contains(name))
                 .OrderBy(r => r.Name);
         }
+
+        public Restaurant Get(int id)
+        {
+            return restaurants.FirstOrDefault(r => r.Id == id);
+        }
     }
 }
