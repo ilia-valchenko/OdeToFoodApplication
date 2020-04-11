@@ -20,15 +20,22 @@ namespace OdeToFoodApplication
             this.repository = restaurantRepository;
         }
 
-        public void OnGet()
+        //public void OnGet()
+        //{
+        //    var defaultMessage = (string)configuration.GetValue(typeof(string), "DefaultMessage");
+
+        //    Message = string.IsNullOrWhiteSpace(defaultMessage)
+        //        ? "Hello World!"
+        //        : defaultMessage;
+
+        //    this.Restaurants = repository.Get();
+        //}
+
+        public void OnGet(string searchTerm)
         {
-            var defaultMessage = (string)configuration.GetValue(typeof(string), "DefaultMessage");
-
-            Message = string.IsNullOrWhiteSpace(defaultMessage)
-                ? "Hello World!"
-                : defaultMessage;
-
-            this.Restaurants = repository.Get();
+            this.Restaurants = string.IsNullOrWhiteSpace(searchTerm)
+                ? repository.Get()
+                : repository.Search(searchTerm);
         }
     }
 }

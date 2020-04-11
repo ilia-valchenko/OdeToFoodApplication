@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using OdeToFood.Core.Entities;
 using OdeToFood.Core.Enums;
 using OdeToFood.DataAccess.Repositories.Interfaces;
@@ -54,6 +56,18 @@ namespace OdeToFood.DataAccess.Repositories
         public IEnumerable<Restaurant> Get()
         {
             return restaurants;
+        }
+
+        public IEnumerable<Restaurant> Search(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException("The name of a restaurant is null or whitespace.");
+            }
+
+            return restaurants
+                .Where(r => r.Name.Contains(name))
+                .OrderBy(r => r.Name);
         }
     }
 }
