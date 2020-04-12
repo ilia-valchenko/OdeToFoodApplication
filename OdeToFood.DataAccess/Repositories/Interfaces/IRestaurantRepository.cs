@@ -10,5 +10,9 @@ namespace OdeToFood.DataAccess.Repositories.Interfaces
         Restaurant Get(int id);
 
         IEnumerable<Restaurant> Search(string name);
+
+        Restaurant Update(Restaurant updatedRestaurant);
+
+        int Commit();
     }
 }

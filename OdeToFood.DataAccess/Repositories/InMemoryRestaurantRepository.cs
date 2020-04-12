@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using OdeToFood.Core.Entities;
 using OdeToFood.Core.Enums;
+using OdeToFood.Core.Exceptions;
 using OdeToFood.DataAccess.Repositories.Interfaces;
 
 namespace OdeToFood.DataAccess.Repositories
@@ -72,7 +73,33 @@ namespace OdeToFood.DataAccess.Repositories
 
         public Restaurant Get(int id)
         {
-            return restaurants.FirstOrDefault(r => r.Id == id);
+            return restaurants.SingleOrDefault(r => r.Id == id);
+        }
+
+        public Restaurant Update(Restaurant updatedRestaurant)
+        {
+            if (updatedRestaurant == null)
+            {
+                throw new ArgumentNullException(nameof(updatedRestaurant));
+            }
+
+            var restaurant = restaurants.SingleOrDefault(r => r.Id == updatedRestaurant.Id);
+
+            if (restaurant == null)
+            {
+                throw new ResourceNotFoundException("The restaurant with provided id wasn't found.");
+            }
+
+            restaurant.Name = updatedRestaurant.Name;
+            restaurant.Location = updatedRestaurant.Location;
+            restaurant.Cuisine = updatedRestaurant.Cuisine;
+
+            return restaurant;
+        }
+
+        public int Commit()
+        {
+            return 0;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace OdeToFoodApplication
         private readonly IRestaurantRepository repository;
         private readonly IHtmlHelper htmlHelper;
 
+        [BindProperty]
         public Restaurant Restaurant { get; set; }
 
         public IEnumerable<SelectListItem> Cuisines { get; set; }
@@ -32,6 +33,14 @@ namespace OdeToFoodApplication
             {
                 return RedirectToPage("NotFound");
             }
+
+            return Page();
+        }
+
+        public IActionResult OnPost()
+        {
+            Restaurant = repository.Update(Restaurant);
+            repository.Commit();
 
             return Page();
         }
