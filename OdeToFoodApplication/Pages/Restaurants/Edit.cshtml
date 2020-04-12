@@ -1,0 +1,37 @@
+﻿@page "{restaurantId:int}"
+@model OdeToFoodApplication.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<form method="post">
+    <!--'asp-for' attribute does three things:-->
+    <!--1. Set 'name' attribute.-->
+    <!--2. Set 'value' attribute.-->
+    <!--3. Responsible for two-way binding.-->
+    <input type="hidden" asp-for="Restaurant.Id" />
+
+    <div class="form-group">
+        <label asp-for="Restaurant.Name"></label>
+        <!--We don't need to set 'type' attribute here as it's been already done by 'asp-for' attribute.-->
+        <input class="form-control" asp-for="Restaurant.Name" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Restaurant.Location"></label>
+        <input class="form-control" asp-for="Restaurant.Location" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Restaurant.Cuisine"></label>
+        <!--We don't use Model prefix for 'asp-for' because 'asp-for' always assumes that we work with Model.-->
+        <select class="form-control" asp-for="Restaurant.Cuisine" asp-items="Model.Cuisines">
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-info">Save</button>
+</form>
+
+<a asp-page="./List" class="btn btn-info">All restaurants</a>
