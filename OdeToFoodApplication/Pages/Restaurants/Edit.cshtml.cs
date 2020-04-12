@@ -39,12 +39,20 @@ namespace OdeToFoodApplication
 
         public IActionResult OnPost()
         {
+            // ModelState.IsValid
+            // ModelState["Location"]
+            // ModelState["Location"].Errors
+            // ModelState["Location"].AttemptedValue
+
+            if (ModelState.IsValid)
+            {
+                // It works fine bacause of model binding.
+                repository.Update(Restaurant);
+                repository.Commit();
+            }
+
             // We need to fill Cuisines again because our ASP .NET application is stateless.
             Cuisines = htmlHelper.GetEnumSelectList<Cuisine>();
-
-            // It works fine bacause of model binding.
-            repository.Update(Restaurant);
-            repository.Commit();
 
             return Page();
         }
