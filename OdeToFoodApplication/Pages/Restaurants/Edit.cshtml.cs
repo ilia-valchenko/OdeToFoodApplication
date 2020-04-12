@@ -39,7 +39,11 @@ namespace OdeToFoodApplication
 
         public IActionResult OnPost()
         {
-            Restaurant = repository.Update(Restaurant);
+            // We need to fill Cuisines again because our ASP .NET application is stateless.
+            Cuisines = htmlHelper.GetEnumSelectList<Cuisine>();
+
+            // It works fine bacause of model binding.
+            repository.Update(Restaurant);
             repository.Commit();
 
             return Page();
