@@ -49,6 +49,8 @@ namespace OdeToFoodApplication
                 // It works fine bacause of model binding.
                 repository.Update(Restaurant);
                 repository.Commit();
+
+                return RedirectToPage("./Detail", new { restaurantId = Restaurant.Id });
             }
 
             // We need to fill Cuisines again because our ASP .NET application is stateless.
