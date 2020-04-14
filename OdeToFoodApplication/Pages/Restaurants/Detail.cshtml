@@ -9,6 +9,13 @@
     ViewData["Title"] = "Detail";
 }
 
+@if (!string.IsNullOrWhiteSpace(Model.SuccessfullySavedMessage))
+{
+    <div class="alert alert-info">
+        @Model.SuccessfullySavedMessage
+    </div>
+}
+
 <h2>@Model.Restaurant.Name</h2>
 <div>
     <p>Id: @Model.Restaurant.Id</p>

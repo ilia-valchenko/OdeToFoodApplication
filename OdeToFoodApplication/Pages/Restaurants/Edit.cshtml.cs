@@ -70,6 +70,10 @@ namespace OdeToFoodApplication
                 repository.Create(Restaurant);
             }
 
+            // Any pages of the application can look into TempData and use it's values.
+            // Does TempData exist per request?
+            TempData["SuccessfullySavedMessage"] = "Restaurant saved!";
+
             repository.Commit();
 
             return RedirectToPage("./Detail", new { restaurantId = Restaurant.Id });

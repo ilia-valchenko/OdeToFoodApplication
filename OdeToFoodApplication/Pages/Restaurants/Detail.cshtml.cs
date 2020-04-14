@@ -9,6 +9,10 @@ namespace OdeToFoodApplication
     {
         private readonly IRestaurantRepository repository;
 
+        // We can bind our TempData to some property.
+        [TempData]
+        public string SuccessfullySavedMessage { get; set; }
+
         public Restaurant Restaurant { get; set; }
 
         public DetailModel(IRestaurantRepository repository)
