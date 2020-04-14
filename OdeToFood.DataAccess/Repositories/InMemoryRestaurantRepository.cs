@@ -10,11 +10,11 @@ namespace OdeToFood.DataAccess.Repositories
 {
     public sealed class InMemoryRestaurantRepository : IRestaurantRepository
     {
-        private readonly IEnumerable<Restaurant> restaurants;
+        private readonly IList<Restaurant> restaurants;
 
         public InMemoryRestaurantRepository()
         {
-            restaurants = new[]
+            restaurants = new List<Restaurant>
             {
                 new Restaurant
                 {
@@ -100,6 +100,19 @@ namespace OdeToFood.DataAccess.Repositories
         public int Commit()
         {
             return 0;
+        }
+
+        public Restaurant Create(Restaurant newRestaurant)
+        {
+            if (newRestaurant == null)
+            {
+                throw new ArgumentNullException(nameof(newRestaurant));
+            }
+
+            newRestaurant.Id = restaurants.Max(r => r.Id) + 1;
+            restaurants.Add(newRestaurant);
+
+            return newRestaurant;
         }
     }
 }

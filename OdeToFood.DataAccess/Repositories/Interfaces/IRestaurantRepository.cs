@@ -5,6 +5,8 @@ namespace OdeToFood.DataAccess.Repositories.Interfaces
 {
     public interface IRestaurantRepository
     {
+        Restaurant Create(Restaurant newRestaurant);
+
         IEnumerable<Restaurant> Get();
 
         Restaurant Get(int id);

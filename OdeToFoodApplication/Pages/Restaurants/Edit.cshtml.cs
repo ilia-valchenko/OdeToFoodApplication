@@ -24,10 +24,18 @@ namespace OdeToFoodApplication
             this.htmlHelper = htmlHelper;
         }
 
-        public IActionResult OnGet(int restaurantId)
+        public IActionResult OnGet(int? restaurantId)
         {
-            Restaurant = repository.Get(restaurantId);
             Cuisines = htmlHelper.GetEnumSelectList<Cuisine>();
+
+            if (restaurantId.HasValue)
+            {
+                Restaurant = repository.Get(restaurantId.Value);
+            }
+            else
+            {
+                Restaurant = new Restaurant();
+            }
 
             if (Restaurant == null)
             {
@@ -44,19 +52,27 @@ namespace OdeToFoodApplication
             // ModelState["Location"].Errors
             // ModelState["Location"].AttemptedValue
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+            {
+                // We need to fill Cuisines again because our ASP .NET application is stateless.
+                Cuisines = htmlHelper.GetEnumSelectList<Cuisine>();
+
+                return Page();
+            }
+
+            if (Restaurant.Id > 0)
             {
                 // It works fine bacause of model binding.
                 repository.Update(Restaurant);
-                repository.Commit();
-
-                return RedirectToPage("./Detail", new { restaurantId = Restaurant.Id });
+            }
+            else
+            {
+                repository.Create(Restaurant);
             }
 
-            // We need to fill Cuisines again because our ASP .NET application is stateless.
-            Cuisines = htmlHelper.GetEnumSelectList<Cuisine>();
+            repository.Commit();
 
-            return Page();
+            return RedirectToPage("./Detail", new { restaurantId = Restaurant.Id });
         }
     }
 }
