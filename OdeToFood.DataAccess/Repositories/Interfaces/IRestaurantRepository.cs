@@ -15,6 +15,8 @@ namespace OdeToFood.DataAccess.Repositories.Interfaces
 
         Restaurant Update(Restaurant updatedRestaurant);
 
+        Restaurant Delete(int id);
+
         int Commit();
     }
 }

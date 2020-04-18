@@ -114,5 +114,14 @@ namespace OdeToFood.DataAccess.Repositories
 
             return newRestaurant;
         }
+
+        public Restaurant Delete(int id)
+        {
+            var restaurant = restaurants.Single(r => r.Id == id);
+
+            restaurants.Remove(restaurant);
+
+            return restaurant;
+        }
     }
 }

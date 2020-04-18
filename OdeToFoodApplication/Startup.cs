@@ -26,7 +26,10 @@ namespace OdeToFoodApplication
                 options.UseSqlServer(Configuration.GetConnectionString("OdeToFoodDb"));
             });
 
-            services.AddSingleton<IRestaurantRepository, InMemoryRestaurantRepository>();
+            //services.AddSingleton<IRestaurantRepository, InMemoryRestaurantRepository>();
+
+            // Scope to a particular HTTP request.
+            services.AddScoped<IRestaurantRepository, SqlRestaurantRepository>();
 
             services.AddRazorPages();
         }
