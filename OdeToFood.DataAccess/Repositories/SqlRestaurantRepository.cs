@@ -44,7 +44,7 @@ namespace OdeToFood.DataAccess.Repositories
 
         public IEnumerable<Restaurant> Get()
         {
-            throw new NotImplementedException();
+            return context.Restaurants.ToList();
         }
 
         public Restaurant Get(int id)
