@@ -1,3 +1,19 @@
+<!--
+    The using statement below will help us to write a code inside cshtml files.
+-->
+
 @using OdeToFoodApplication
 @namespace OdeToFoodApplication.Pages
+
+<!--
+    The statement below will allow us to use helpers like:
+    * asp-page
+    * asp-for
+-->
+
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!--
+    If you have your own tag helpers you will need to register them here.
+    addTagHelper *, OdeToFood
+-->
