@@ -52,6 +52,11 @@ namespace OdeToFood.DataAccess.Repositories
             return context.Restaurants.Single(r => r.Id == id);
         }
 
+        public int GetCount()
+        {
+            return context.Restaurants.Count();
+        }
+
         public IEnumerable<Restaurant> Search(string name)
         {
             return context.Restaurants.Where(r => r.Name.StartsWith(name))

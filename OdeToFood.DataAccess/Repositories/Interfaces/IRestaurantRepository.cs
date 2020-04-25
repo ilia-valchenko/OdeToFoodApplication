@@ -11,6 +11,8 @@ namespace OdeToFood.DataAccess.Repositories.Interfaces
 
         Restaurant Get(int id);
 
+        int GetCount();
+
         IEnumerable<Restaurant> Search(string name);
 
         Restaurant Update(Restaurant updatedRestaurant);
