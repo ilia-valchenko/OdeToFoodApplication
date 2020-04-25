@@ -123,5 +123,10 @@ namespace OdeToFood.DataAccess.Repositories
 
             return restaurant;
         }
+
+        public int GetCount()
+        {
+            return restaurants.Count;
+        }
     }
 }
