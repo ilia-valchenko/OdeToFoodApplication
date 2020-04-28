@@ -31,6 +31,26 @@ namespace OdeToFoodApplication
             // Scope to a particular HTTP request.
             services.AddScoped<IRestaurantRepository, SqlRestaurantRepository>();
 
+            #region Fun with service descriptor
+
+            //var serviceDescriptor1 = new ServiceDescriptor(
+            //    typeof(IRestaurantRepository),
+            //    typeof(SqlRestaurantRepository),
+            //    ServiceLifetime.Scoped);
+
+            //var serviceDescriptor2 = ServiceDescriptor.Describe(
+            //    typeof(IRestaurantRepository),
+            //    typeof(SqlRestaurantRepository),
+            //    ServiceLifetime.Scoped);
+
+            //var serviceDescriptor3 = ServiceDescriptor.Scoped(
+            //    typeof(IRestaurantRepository),
+            //    typeof(SqlRestaurantRepository));
+
+            //var serviceDescriptor4 = ServiceDescriptor.Singleton<IRestaurantRepository, SqlRestaurantRepository>();
+
+            #endregion
+
             services.AddRazorPages();
         }
 
